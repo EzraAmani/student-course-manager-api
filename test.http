@@ -1,0 +1,25 @@
+### Get All Students
+GET http://localhost:8082/students
+
+### Create Student
+POST http://localhost:8082/students
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "email": "jane@example.com",
+  "department": "Computer Science"
+}
+
+### Update Student
+PUT http://localhost:8082/students/1
+Content-Type: application/json
+
+{
+  "name": "Jane Doe Updated",
+  "email": "jane.updated@example.com",
+  "department": "Software Engineering"
+}
+
+### Delete Student
+DELETE http://localhost:8082/students/1

@@ -1,0 +1,50 @@
+package com.studentmanager.controller;
+
+import com.studentmanager.entity.Student;
+import com.studentmanager.service.StudentService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@CrossOrigin(origins = {"http://localhost:5173", "https://*.netlify.app", "*"})
+@RequestMapping("/students")
+public class StudentController {
+
+    private final StudentService studentService;
+
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
+
+    // Get all students
+    @GetMapping
+    public List<Student> getAllStudents() {
+        return studentService.getAllStudents();
+    }
+
+    // Get one student
+    @GetMapping("/{id}")
+    public Student getStudentById(@PathVariable Long id) {
+        return studentService.getStudentById(id);
+    }
+
+    // Add student
+    @PostMapping
+    public Student addStudent(@RequestBody Student student) {
+        return studentService.saveStudent(student);
+    }
+
+    // Update student
+    @PutMapping("/{id}")
+    public Student updateStudent(@PathVariable Long id,
+                                 @RequestBody Student student) {
+        return studentService.updateStudent(id, student);
+    }
+
+    // Delete student
+    @DeleteMapping("/{id}")
+    public void deleteStudent(@PathVariable Long id) {
+        studentService.deleteStudent(id);
+    }
+}
